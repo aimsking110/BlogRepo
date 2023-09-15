@@ -27,7 +27,6 @@ Route::group(['middleware' => ['auth:sanctum']], function()
 
 Route::post('/auth/register',[AuthController::class,'register']);
 Route::post('/auth/login',[AuthController::class,'login']);
-
 //Route::post('/comments', 'CommentController@store'); // Create a comment
 //  Route::get('/comments/{comment}', 'CommentController@show'); // Retrieve a comment
 Route::put('/comments/{comment}', 'CommentController@update'); // Update a comment
