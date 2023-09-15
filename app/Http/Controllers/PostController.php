@@ -92,4 +92,29 @@ class PostController extends Controller
 
         return response()->json(['message' => 'Post updated successfully'], 200);
     }
+
+
+// ...
+
+public function destroy($id)
+{
+    // Find the post by ID
+    $post = Post::find($id);
+
+    // Check if the post exists
+    if (!$post) {
+        return response()->json(['message' => 'Post not found.'], 404);
+    }
+
+    // Check if the post belongs to the authenticated user
+    if ($post->user_id !== auth()->id()) {
+        return response()->json(['message' => 'You do not have permission to delete this post.'], 403);
+    }
+
+    // Delete the post
+    $post->delete();
+
+    return response()->json(['message' => 'Post deleted successfully'], 200);
+}
+
 }
